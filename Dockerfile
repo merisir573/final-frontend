@@ -1,20 +1,10 @@
-# Use Node.js as the base image
-FROM node:18
+FROM node:18-alpine
 
-# Set the working directory
 WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install && npm install -g @nestjs/cli
-
-# Copy the entire app code
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
+RUN npm run build
 
-# Expose the port (default for NestJS)
 EXPOSE 3005
-
-# Start the application
-CMD ["npm", "run", "dev"]
+CMD ["npx", "serve", "-s", "dist", "-l", "$PORT"]
