@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 
-const GATEWAY_URL = "http://localhost:3000/api/v1";
+const GATEWAY_URL = "https://finals-gateway.onrender.com/api/v1";
 
 interface Medicine {
   name: string;
@@ -28,7 +28,7 @@ function MedicineSearch({ onAdd, currentPage, setCurrentPage }: MedicineSearchPr
 
   const searchMedicine = async (page: number) => {
     try {
-      const response: AxiosResponse<SearchResponse> = await axios.get(`https://finals-medicine.onrender.com/medicine/v1/search`, {
+      const response: AxiosResponse<SearchResponse> = await axios.get(`${GATEWAY_URL}/medicine/v1/search`, {
         params: { 
           name: query, 
           page: page.toString(),  // Ensure page is passed as a string

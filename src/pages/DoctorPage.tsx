@@ -3,7 +3,7 @@ import axios from "axios";
 import { AxiosError } from 'axios';
 import MedicineSearch from "../components/MedicineSearch";
 
-const GATEWAY_URL = "http://localhost:3000/api/v1";
+const GATEWAY_URL = "https://finals-gateway.onrender.com/api/v1";
 
 function DoctorPage() {
   const [tc, setTc] = useState("");
@@ -24,7 +24,7 @@ function DoctorPage() {
 
   const register = async () => {
     try {
-      await axios.post(`https://finals-auth.onrender.com/auth/v1/register`, {
+      await axios.post(`${GATEWAY_URL}/auth/v1/register`, {
         username,
         password,
       });
@@ -37,7 +37,7 @@ function DoctorPage() {
 
   const login = async () => {
     try {
-      const response = await axios.post(`https://finals-auth.onrender.com/auth/v1/login`, {
+      const response = await axios.post(`${GATEWAY_URL}/auth/v1/login`, {
         username,
         password,
       });
@@ -68,7 +68,7 @@ function DoctorPage() {
       });
   
       const response = await axios.post(
-        `https://finals-doctor.onrender.com/doctor/v1/create-prescription`,
+        `${GATEWAY_URL}/doctor/v1/create-prescription`,
         {
           prescriptionId,  // Pass the prescriptionId here
           patientTc: tc, 
