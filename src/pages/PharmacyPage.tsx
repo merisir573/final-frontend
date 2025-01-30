@@ -24,7 +24,7 @@ function PharmacyPage() {
 
   const register = async () => {
     try {
-      await axios.post(`${GATEWAY_URL}/auth/v1/register`, {
+      await axios.post(`https://finals-auth.onrender.com/auth/v1/register`, {
         username,
         password,
       });
@@ -37,7 +37,7 @@ function PharmacyPage() {
 
   const login = async () => {
     try {
-      const response = await axios.post(`${GATEWAY_URL}/auth/v1/login`, {
+      const response = await axios.post(`https://finals-auth.onrender.com/auth/v1/login`, {
         username,
         password,
       });
@@ -68,7 +68,7 @@ function PharmacyPage() {
       });
   
       const response = await axios.post(
-        `${GATEWAY_URL}/pharmacy/v1/submit-prescription`,
+        `https://finals-pharmacy.onrender.com/pharmacy/v1/submit-prescription`,
         {
           prescriptionId,  // Pass the prescriptionId here
           patientTc: tc, 
